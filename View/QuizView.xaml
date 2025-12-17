@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="Quizz.View.QuizView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid Background="{Binding BackgroundColor}">
+        <StackPanel Margin="40" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+            <TextBlock Text="{Binding CurrentQuestion.Text}"
+                       FontSize="28" FontWeight="Bold"
+                       TextAlignment="Center"
+                       Margin="0,0,0,20"/>
+
+            <ItemsControl ItemsSource="{Binding CurrentQuestion.Choices}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <RadioButton Content="{Binding}"
+                                     GroupName="Answers"
+                                     FontSize="20"
+                                     Margin="0,5"
+                                     Checked="RadioButton_Checked"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <Button Content="Valider"
+                    Command="{Binding ValidateCommand}"
+                    Width="180" Height="50"
+                    Margin="0,30,0,0"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
+

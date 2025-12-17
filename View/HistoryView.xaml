@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="Quizz.View.HistoryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Quizz.ViewModel">
+
+
+<UserControl.DataContext>
+        <vm:HistoryViewModel/>
+    </UserControl.DataContext>
+    
+
+    <Grid Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Historique des parties"
+                   FontSize="26"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   Margin="0 0 0 20"/>
+        <Button Content="Effacer l'historique"
+        Width="110"
+        Height="20"
+        Margin="0 40 10 10"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Center"
+        Background="#E8E8E8"
+        BorderBrush="#CCCCCC"
+        Click="ClearHistory_Click"/>
+
+
+        <DataGrid Grid.Row="1"
+                  ItemsSource="{Binding Scores}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  IsReadOnly="True">
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Nom"
+                                    Binding="{Binding PlayerName}"
+                                    Width="*"/>
+
+                <DataGridTextColumn Header="Difficulté"
+                                    Binding="{Binding Difficulty}"
+                                    Width="*"/>
+
+                <DataGridTextColumn Header="Score"
+                                    Binding="{Binding Score, StringFormat={}{0}/}">
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Total Questions"
+                                    Binding="{Binding TotalQuestions}"
+                                    Width="*"/>
+
+                <DataGridTextColumn Header="Date"
+                                    Binding="{Binding PlayedOn, StringFormat=dd/MM/yyyy HH:mm}"
+                                    Width="*"/>
+                
+                
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+    </Grid>
+</UserControl>
+ 
